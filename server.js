@@ -4,7 +4,7 @@ const { portfolioData } = require('./data/portfolioData');
 const { checkMySQL, checkPostgres, checkMongo } = require('./db/health');
 
 const app = express();
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
