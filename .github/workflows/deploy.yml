@@ -44,10 +44,19 @@ jobs:
           username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
+            cat > .env <<EOF
+            PORT=${{ vars.APP_PORT }}
+            MYSQL_HOST=${{ vars.MYSQL_HOST }}
+            MYSQL_PORT=${{ vars.MYSQL_PORT }}
+            MYSQL_USER=${{ secrets.MYSQL_USER }}
+            MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}
+            EOF
+
             docker pull ${{ vars.DOCKERHUB_IMAGE_NAME }}:latest
             docker stop my-portfolio-api || true 
             docker rm my-portfolio-api || true 
-            docker run -d --name my-portfolio-api -p 5001:5001 ${{ vars.DOCKERHUB_IMAGE_NAME }}:latest
+            docker run -d --name my-portfolio-api -p 5001:5001 --env-file .env --add-host=host.docker.internal:host-gateway ${{ vars.DOCKERHUB_IMAGE_NAME }}:latest
 
 
   
