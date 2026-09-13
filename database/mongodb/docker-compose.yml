@@ -12,6 +12,8 @@ services:
       - mongodb_data:/data/db
     env_file:
       - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   mongodb_data:
