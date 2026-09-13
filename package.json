@@ -4,8 +4,8 @@
   "description": "Public API for the DevOps portfolio website",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "start": "node --env-file=.env server.js",
+    "dev": "node --watch --env-file=.env server.js"
   },
   "keywords": [
     "portfolio",
@@ -17,6 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongodb": "^7.6.0",
+    "mysql2": "^3.24.4",
+    "pg": "^8.23.0"
   }
 }
