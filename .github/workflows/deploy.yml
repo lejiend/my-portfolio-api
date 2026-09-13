@@ -41,7 +41,7 @@ jobs:
         uses: appleboy/ssh-action@v1 
         with: 
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
+          username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
             docker pull ${{ vars.DOCKERHUB_IMAGE_NAME }}:latest
